@@ -15,7 +15,7 @@ class MatricesController {
                 var result = [];
                 matrices.forEach( matrice => result.push({_id: matrice._id, name: matrice.name}));
 
-                res.status(200).json({names: result});
+                res.status(200).json({matrices: result});
             })
             .catch(next);
     }

@@ -6,9 +6,10 @@ const Schema = mongoose.Schema
 
 const questions = new Schema(
     {
+        _id: Schema.Types.ObjectId,
         content: String,
         image: { type: String, default: ""},
-        answers: [Schema.Types.ObjectId]
+        questionTypes: Schema.Types.ObjectId
     }
 )
 

@@ -9,7 +9,6 @@ const questionTypes = new Schema(
         name: String,
         grade: Schema.Types.ObjectId,
         difficultLevel: Schema.Types.ObjectId,
-        questions: [Schema.Types.ObjectId]
     }
 )
 

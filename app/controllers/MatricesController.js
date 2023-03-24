@@ -13,7 +13,7 @@ class MatricesController {
         matrices.find({})
             .then( matrices => {
                 var result = [];
-                matrices.forEach( matrice => result.push(matrice.name));
+                matrices.forEach( matrice => result.push({_id: matrice._id, name: matrice.name}));
 
                 res.status(200).json({names: result});
             })

@@ -6,6 +6,7 @@ const answers = new Schema(
         name: String,
         content: String,
         isTrue: Boolean,
+        questions: Schema.Types.ObjectId
     }
 )
 

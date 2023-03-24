@@ -7,7 +7,7 @@ class AccountsController {
         const password = req.body.password;
     
         accounts.findOne({ username: username, password: password})
-            .then( accounts => res.status(200).json({"success": true}))
+            .then( account => res.status(200).json({"success": true, "fullname": account.fullname}))
             .catch(next);
     } 
 
@@ -16,7 +16,7 @@ class AccountsController {
         const account = new accounts(req.body);
         console.log(req.body);
         account.save()
-            .then( () => res.status(200).json({"success": true, "fullname": "account"}))
+            .then( () => res.status(200).json({"success": true, "fullname": account.fullname}))
             .catch(next);
     } 
 

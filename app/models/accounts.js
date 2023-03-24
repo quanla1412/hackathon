@@ -4,9 +4,9 @@ const Schema = mongoose.Schema
 const accounts = new Schema(
     {
         fullname: String,
-        username: String,
+        username: { type: String, unique: true},
         password: String,
-        matrices: {type: [Schema.Types.ObjectId], null: true}
+        matrices: {type: [Schema.Types.ObjectId], default: []}
     }
 )
 

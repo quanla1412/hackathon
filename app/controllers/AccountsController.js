@@ -11,10 +11,19 @@ class AccountsController {
             .catch(next);
     } 
 
+    //[POST] /register
+    register (req, res, next) {
+        const account = new accounts(req.body);
+        console.log(req.body);
+        account.save()
+            .then( () => res.json(req.body.fullname))
+            .catch(next);
+    } 
+
     //[GET] /
     getAll(req, res, next) {
         accounts.find({ })
-            .then( accounts => res.send("access success"))
+            .then( accounts => res.send(accounts))
             .catch(next);
     }
     

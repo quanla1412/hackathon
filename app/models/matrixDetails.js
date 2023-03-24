@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const matrixDetails = new Schema(
     {
-        questionType: [Schema.Types.ObjectId],
+        questionType: Schema.Types.ObjectId,
         quantity: Number
     }
 )

@@ -1,20 +1,31 @@
 const matrices = require("../models/matrices")
 
 class MatricesController {
-    //[GET] /
-    getAll(req, res, next) {
-        matrices.find({ })
-            .then( matrices => res.json(matrices))
+    //[GET] /:id
+    getMatrix(req, res, next) {
+        matrices.findOne({_id: req.params.id})
+            .then( matrix => res.json(matrix))
             .catch(next);
     }
 
     //[GET] /names
     getNames(req, res, next) {
         matrices.find({})
-            .then( matrices => res.json(matrices.name))
+            .then( matrices => {
+                var result = [];
+                matrices.forEach( matrice => result.push(matrice.name));
+
+                res.status(200).json({names: result});
+            })
             .catch(next);
     }
     
+    //[GET] /
+    getAll(req, res, next) {
+        matrices.find({ })
+            .then( matrices => res.json(matrices))
+            .catch(next);
+    }
 } 
 
 module.exports = new MatricesController()

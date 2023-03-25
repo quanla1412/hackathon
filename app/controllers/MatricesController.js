@@ -1,6 +1,20 @@
-const matrices = require("../models/matrices")
+const matrices = require("../models/matrices");
+const matrixDetails = require("../models/matrixDetails");
 
 class MatricesController {
+    //[GET] /:question/:id
+    getDetailById(req, res, next) {
+        matrices.findById({_id: req.params.matrix_id})
+            .then( matrix => {
+                matrixDetails.find({ matrices: matrix._id})
+                    .then(matrixDetailsTemp => {
+                        res.json(matrixDetailsTemp);
+                    })
+                    .catch(error);
+            })
+            .catch(next);
+    }
+
     //[GET] /:id
     getMatrix(req, res, next) {
         matrices.findOne({_id: req.params.id})

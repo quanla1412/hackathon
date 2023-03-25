@@ -5,10 +5,10 @@ const Schema = mongoose.Schema
 const matrices = new Schema(
     {
         name: String,
-        matrixDetails: [Schema.Types.ObjectId],
         isRoot: Boolean,
         total: Number,
-        time: Number
+        time: Number,
+        account: Schema.Types.ObjectId
     }
 )
 

@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const accounts = require("../models/accounts")
 
 class AccountsController {
@@ -14,6 +15,7 @@ class AccountsController {
     //[POST] /register
     register (req, res, next) {
         const account = new accounts(req.body);
+        account._id = new ObjectId();
         console.log(req.body);
         account.save()
             .then( () => res.status(200).json({"success": true, "fullname": account.fullname}))

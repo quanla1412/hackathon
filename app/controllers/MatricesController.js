@@ -2,6 +2,8 @@ const matrices = require("../models/matrices");
 const matrixDetails = require("../models/matrixDetails");
 
 class MatricesController {
+    //[POST] /save
+
     //[GET] /:question/:id
     getDetailById(req, res, next) {
         matrices.findById({_id: req.params.matrix_id})

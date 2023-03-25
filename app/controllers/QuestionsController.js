@@ -32,7 +32,7 @@ class QuestionsController {
 
     //[GET] /:question_type/:quantity
     getQuestionsByQuestionType(req, res, next) {
-        if(req.params.quantity === '0')
+        if(req.params.quantity == '0')
             res.json(null)
 
         questions.find({questionTypes: req.params.question_type})

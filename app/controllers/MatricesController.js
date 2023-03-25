@@ -1,18 +1,36 @@
+const { ObjectId } = require("mongodb");
 const matrices = require("../models/matrices");
 const matrixDetails = require("../models/matrixDetails");
 
 class MatricesController {
-    //[POST] /save
+    //[POST] /insert
+    insert(req, res, next) {
+        const data = req.body;
+        matrix = new matrices({name: data.name, total: data.total, time: data.time});
+        matrix._id = new ObjectId();
 
-    //[GET] /:question/:id
+        matrix.save()
+            .then(
+                data.metrixDetails.forEach(matrixDetail => {
+                    matrixDetail = new matrixDetails(matrixDetail);
+                    matrixDetail.matrices = matrix._id;
+                    matrixDetail.save();
+                })
+            )
+            .catch(next);
+        
+        res.json({success: true})
+    }
+
+    //[GET] /details/:id
     getDetailById(req, res, next) {
-        matrices.findById({_id: req.params.matrix_id})
+        matrices.findById({_id: req.params.id})
             .then( matrix => {
                 matrixDetails.find({ matrices: matrix._id})
                     .then(matrixDetailsTemp => {
                         res.json(matrixDetailsTemp);
                     })
-                    .catch(error);
+                    .catch(next);
             })
             .catch(next);
     }

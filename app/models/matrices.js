@@ -4,10 +4,11 @@ const Schema = mongoose.Schema
 
 const matrices = new Schema(
     {
+        _id: Schema.Types.ObjectId,
         name: String,
-        isRoot: Boolean,
         total: Number,
         time: Number,
+        isRoot: {type: Boolean, default: false},
         account: Schema.Types.ObjectId
     }
 )
